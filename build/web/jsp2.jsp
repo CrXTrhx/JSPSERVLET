@@ -4,6 +4,7 @@
     Author     : CrX26
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="org.cris.Datos"%>
 <%@page import="org.cris.Negocio"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,37 +23,66 @@
        <hr>
 <%
             Negocio negocio = new Negocio();
-            int num =(int)(Math.random()*100);
+            int num =(int)(Math.random()*10);
             String cad = String.format("?num=%d", num);
-        %>
-      
-
-        
-
-        <table class="table table-striped"  class="table table-bordered">
-
-  <tbody>
-    <tr class="table-active">
-        <td>Nombre</td>
-        <td>Calificaciones</td>
-     </tr>
-    <%
-                if (negocio.getLista() != null && !negocio.getLista().isEmpty()) {
-                    for(Datos datito : negocio.getLista()){
-            %>
-        
-        <tr>
-              
-      <td><%=datito.getNombre()%></td>
-      <td><%=datito.getCal()%></td>
-    </tr>
-  </tbody>
-  <%
-                    }
+            
+            int i = 0;
+            List<Datos> lista = null;
+            String id = null;
+            String borrar = null;
+            session = request.getSession( true );
+            
+            if( session != null )
+            {
+                if( session.getAttribute("lista") != null )
+                {
+                    lista = (List)session.getAttribute( "lista" );
                 }
+            }
+            id = request.getParameter( "id" );
+            borrar = request.getParameter( "borrar" );
+            if( "Submit".equals( borrar ) )
+            {
+                lista.remove( Integer.parseInt(id) );
+            }
+        %>
+        <div class="container container-xl">
+        <table class="table table-dark table-sm table-bordered border-white border-3">
+            <tr>
+                <td>#</td>
+                <td>Id</td>
+                <td>Nombre</td>
+                <td>Calificaciones</td>
+                <td>Email</td>
+                <td>Contacto</td>
+                <td>Estado</td>
+                <td>Semestre</td>
+                <td>Sexo</td>
+                <td>Acciones</td>
+            </tr>
+            <%
+              if( lista != null && !lista.isEmpty() )
+              {
+                for( Datos datos : lista)
+                {
             %>
-</table>
-<div class="container">
+            <tr>
+                <td><%=i + 1%></td>
+                <td><%=i%></td>
+                <td><%=datos.getNombre( )%></td>
+                <td><%=datos.getCal()%></td>
+                <td>
+                    <a href="jsp2.jsp?id=<%=i%>&borrar=Submit">Borrar</a> 
+                    <a href="jsp3.jsp?id=<%=i++%>&editar=Submit">Editar</a> 
+                </td>
+            </tr>
+            <%
+                }
+              }
+            %>
+        </table>
+        </div>
+<div class="container-x">
   <div class="row">
     <div class="col align-self-start">
         <figure class="text-center">
@@ -70,10 +100,15 @@
 </figure>
      
     </div>
+    <div class="col align-self-center" >
+         <figure class="text-center">
+  <blockquote class="blockquote">
+      <a href="jsp3.jsp" style="text-decoration: none" class="fs-3"><font color="black">Ir a Jsp3</a>
+  </blockquote>
+</figure>
+     
+    </div>
   </div>
 </div>
-       
-        
-        
     </body>
 </html>

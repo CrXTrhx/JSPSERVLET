@@ -22,13 +22,6 @@
         <h1 class="display-3"><center>Números</center></h1>
         <a href="jsp2.jsp" style="text-decoration: none" class="fs-3"><font color="black"><center>Ir a Jsp2</center></a>
         <hr>
-         
-   
-      
-  
-    
-      
-
 
                 <% String num = request.getParameter("num");%>
                 
@@ -41,19 +34,21 @@
                 <%
                     if (num != null && !num.isEmpty()) {
                     List<Integer> numAle=new ArrayList<>();
-                    for (int i = 0; i < numero; i++) {
-                            int numerosAle=(int)(Math.random() * 100);
-                            numAle.add(numerosAle);
                 %>
                 <div class="container" style="align-items: center" >
                 <div class="row align-items-start" >
                      <div class="col">
+                <%
+                         for (int i = 0; i < numero; i++) {
+                            int numerosAle=(int)(Math.random() * 100);
+                            numAle.add(numerosAle);
+                %>
                     <h2>El número es: <%=numerosAle%></h2>
-                </div>
                 <%
                     }
                     Collections.sort(numAle);
                 %>
+                </div>
                 <div class="col" >
                 <h2>Los números ordenados son:</h2>
                 
@@ -62,11 +57,14 @@
                     <h2><%out.print(numeAle);%></h2>
                 <%
                     }
+                %>
+                </div></div>
+                      </div>
+                <%
                     }
                     else{
                 %>
-                    <h1>Sin dato</h1></div></div>
-                      </div>
+                    <h1>Sin dato</h1>
                 <%
                     }
                 %>
