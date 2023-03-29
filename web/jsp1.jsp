@@ -64,7 +64,7 @@
                     }
                     else{
                 %>
-                    <h1>Sin dato</h1>
+                <h1 class="display-3"><center>Sin dato</center></h1>
                 <%
                     }
                 %>

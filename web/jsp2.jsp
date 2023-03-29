@@ -71,6 +71,12 @@
                 <td><%=i%></td>
                 <td><%=datos.getNombre( )%></td>
                 <td><%=datos.getCal()%></td>
+                <td><%=datos.getEmail()%></td>
+                <td><%=datos.getTel()%></td>
+                <td><%=datos.getEstado()%></td>
+                <td><%=datos.getSemestre()%></td>
+                <td><%=datos.getSexo()%></td>
+                
                 <td>
                     <a href="jsp2.jsp?id=<%=i%>&borrar=Submit">Borrar</a> 
                     <a href="jsp3.jsp?id=<%=i++%>&editar=Submit">Editar</a> 

@@ -22,6 +22,7 @@
             String email = null;
             String tel = null;
             String semestre = null;
+            String estado = null;
             String guardar = null;
             String id = null;
             String editar = null;
@@ -46,6 +47,7 @@
             tel = request.getParameter( "tel" );
             email = request.getParameter( "email" );
             semestre = request.getParameter( "semestre" );
+            estado = request.getParameter("estado");
             guardar = request.getParameter( "guardar" );
             id = request.getParameter( "id" );
             editar = request.getParameter( "editar" );
@@ -73,6 +75,12 @@
                 }
                 datos.setNombre(nombre);
                 datos.setCal( Float.parseFloat( calif ) ); 
+                datos.setEmail(email);
+                datos.setTel(tel);
+                datos.setSemestre(Integer.parseInt(semestre));
+                datos.setSexo(sexo);
+                datos.setEstado(estado);
+                
                 if( "Submit".equals( guardar ) )
                 {
                     lista.add( datos );
@@ -138,14 +146,14 @@
                         Email
                     </td>
                     <td>
-                    <input type="email" id="email" name="email" value="<%=datos.getEmail()%>" placeholder="ejemplo@ejemplo.com">
+                    <input type="email" id="email" name="email" placeholder="ejemplo@ejemplo.com">
                     </td>
                 </tr>
                 
                 <tr>
                     <td>Contacto</td>
                     <td>
-                        <input type="tel" id="tel" name="tel" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}" placeholder="12-3456-7891" value="<%=datos.getTel()%>">
+                        <input type="tel" id="tel" name="tel" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}" placeholder="12-3456-7891" >
                         <br>
                         <small>Formato 12-1234-1234</small>
                     </td>
@@ -155,7 +163,9 @@
                     <td>Estado</td>
                     <td>
                         <div class="input-group mb-3">
-                            <select class="form-select" id="inputGroupSelect01">
+                            
+                            <select class="form-select" id="estado" name="estado" value="<%=datos.getEstado()%>">
+                                
                               <option selected>Elige</option>
                               <option value="Aguascalientes">Aguascalientes</option>
                               <option value="Baja-California">Baja California</option>
